@@ -27,7 +27,9 @@ export function ListEdit() {
           </Button>
         </HeaderItem>
         <HeaderItem position="center">
-          <h1 className="text-secondary text-xl font-semibold">Edit list</h1>
+          <h1 className="text-secondary text-xl font-semibold">
+            Edit --- {list.name}
+          </h1>
         </HeaderItem>
         {list ? (
           <>
