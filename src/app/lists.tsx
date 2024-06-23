@@ -7,6 +7,7 @@ import { Wrapper } from "../components/wrapper/wrapper";
 import { parseListAll } from "../modules/lists/lists";
 import { StoreCache } from "../utils/money-clip";
 import { Listing } from "../components/DiscountList/Listing";
+import { ListSchema } from "../modules/lists/lists.schema";
 
 export function Lists() {
   const data = useLoaderData() as Awaited<
@@ -49,9 +50,16 @@ export function createLoader({ listStore }: { listStore: StoreCache }) {
   return async function loader(_: LoaderFunctionArgs) {
     try {
       const lists = await listStore.getAll();
-      const parsedLists = parseListAll(Object.values(lists));
 
-      return parsedLists;
+      const parsedLists = parseListAll(Object.values(lists));
+      console.log(parsedLists);
+
+      const orderedLists = parsedLists.sort(
+        (a: ListSchema, b: ListSchema) =>
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+      );
+
+      return orderedLists;
     } catch (error) {
       throw new Error("Error loading lists");
     }
