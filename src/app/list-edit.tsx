@@ -28,7 +28,7 @@ export function ListEdit() {
         </HeaderItem>
         <HeaderItem position="center">
           <h1 className="text-secondary text-xl font-semibold">
-            Edit --- {list.name}
+            Edit - {list.name}
           </h1>
         </HeaderItem>
         {list ? (
