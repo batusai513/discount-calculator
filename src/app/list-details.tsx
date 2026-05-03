@@ -50,7 +50,7 @@ export function ListDetails() {
           </Button>
         </HeaderItem>
         <HeaderItem position="center">
-          <h1 className="text-secondary text-lg font-semibold overflow-ellipsis text-nowrap overflow-hidden">
+          <h1 className="text-secondary text-lg font-semibold text-ellipsis text-nowrap overflow-hidden">
             {list.name}
           </h1>
         </HeaderItem>

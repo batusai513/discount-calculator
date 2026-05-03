@@ -1,3 +1,5 @@
+@reference "#theme.css";
+
 .card {
   @apply bg-white shadow-custom overflow-hidden;
 }

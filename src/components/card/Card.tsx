@@ -3,20 +3,20 @@ import { ComponentPropsWithoutRef } from 'react';
 import styles from './card.module.css';
 
 export type CardProps = {
-  shape?: 'brand' | 'rounded';
+  shape?: 'brand' | 'rounded-sm';
 } & ComponentPropsWithoutRef<'div'>;
 
 export function Card({
   children,
   className,
-  shape = 'rounded',
+  shape = 'rounded-sm',
   ...props
 }: CardProps) {
   return (
     <article
       className={clsx(styles.card, className, {
         'rounded-tr-none rounded-brand': shape === 'brand',
-        'rounded-2xl': shape === 'rounded',
+        'rounded-2xl': shape === 'rounded-sm',
       })}
       {...props}
     >

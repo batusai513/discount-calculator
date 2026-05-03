@@ -1,6 +1,59 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@plugin "daisyui" {
+  themes: false;
+}
+
+@theme {
+  --color-*: initial;
+
+  --color-red: #f25c55;
+  --color-gray-darker: #75759e;
+  --color-gray-dark: #28255b;
+  --color-gray: #5c5c7d;
+  --color-gray-light: #9999ac;
+  --color-gray-lighter: #f0f1f5;
+  --color-white: #ffffff;
+
+  --color-primary: #f25c55;
+  --color-primary-50: #ffffff;
+  --color-primary-100: #feeded;
+  --color-primary-200: #fbc9c7;
+  --color-primary-300: #f8a5a1;
+  --color-primary-400: #f5807b;
+  --color-primary-500: #f25c55;
+  --color-primary-600: #ee2a21;
+  --color-primary-700: #c8170f;
+  --color-primary-800: #93110b;
+  --color-primary-900: #5f0b07;
+  --color-primary-950: #450805;
+
+  --color-secondary: #28255b;
+  --color-secondary-50: #ffffff;
+  --color-secondary-100: #f0f1f5;
+  --color-secondary-200: #d9dbe6;
+  --color-secondary-300: #c2c5d8;
+  --color-secondary-400: #acb0ca;
+  --color-secondary-500: #9599bc;
+  --color-secondary-600: #7e83ae;
+  --color-secondary-700: #666a9f;
+  --color-secondary-800: #28255b;
+
+  --color-third: #5c5c7d;
+  --color-third-50: #ffffff;
+  --color-third-100: #f0f1f5;
+  --color-third-200: #d9dbe6;
+  --color-third-300: #c2c5d8;
+  --color-third-400: #acb0ca;
+  --color-third-500: #5c5c7d;
+  --color-third-600: #7e83ae;
+
+  --font-sans:
+    "Montserrat", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --shadow-custom: 5px 6px 22px 5px rgba(0, 0, 0, 0.12);
+  --radius-brand: 1.25rem;
+}
 
 .root {
   display: grid;

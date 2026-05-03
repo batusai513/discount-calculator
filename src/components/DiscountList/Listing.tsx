@@ -24,7 +24,7 @@ export function Listing({ data }: { data: Array<ListSchema> }) {
                   return (
                     <>
                       <div
-                        className="flex-1 grid grid-cols-[minmax(0,_2fr)_minmax(0,_1fr)] gap-1"
+                        className="flex-1 grid grid-cols-[minmax(0,2fr)_minmax(0,1fr)] gap-1"
                         style={
                           isTransitioning
                             ? {
@@ -36,7 +36,7 @@ export function Listing({ data }: { data: Array<ListSchema> }) {
                       >
                         <div className="flex justify-start items-center text-xs text-primary gap-1">
                           <Icon iconName="store" className="shrink-0" />
-                          <span className="overflow-ellipsis text-base text-nowrap overflow-hidden">
+                          <span className="text-ellipsis text-base text-nowrap overflow-hidden">
                             {list.store}
                           </span>
                         </div>
@@ -49,7 +49,7 @@ export function Listing({ data }: { data: Array<ListSchema> }) {
                         </div>
 
                         <div className="flex justify-start">
-                          <span className="text-secondary font-semibold overflow-ellipsis text-nowrap overflow-hidden">
+                          <span className="text-secondary font-semibold text-ellipsis text-nowrap overflow-hidden">
                             {list.name}
                           </span>
                         </div>

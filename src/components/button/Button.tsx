@@ -7,7 +7,7 @@ export type ButtonProps = {
   asChild?: boolean;
   block?: boolean;
   variant?: "primary" | "secondary" | "link" | "none";
-  shape?: "rounded" | "square" | "brand" | "none";
+  shape?: "rounded" | "rounded-sm" | "square" | "brand" | "none";
 } & ComponentPropsWithoutRef<"button">;
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -34,7 +34,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
               "w-full": block,
               "aspect-square rounded-xl p-2 rounded-tr-none": shape === "brand",
               "aspect-square rounded-lg p-2": shape === "square",
-              "rounded-full": shape === "rounded",
+              "rounded-full": shape === "rounded-sm" || shape === "rounded",
               [primaryButtonClasses]: variant === "primary",
               [secondaryButtonClasses]: variant === "secondary",
             },
@@ -54,11 +54,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 Button.displayName = "Button";
 
 const buttonClasses = clsx(
-  "justify-center align-middle py-1 px-3 font-bold shadow-md focus:outline-none focus:ring focus:ring-opacity-75 inline-flex items-center active:ring-2 active:ring-opacity-75"
+  "justify-center align-middle py-1 px-3 font-bold shadow-md focus:outline-hidden focus:ring-3 inline-flex items-center active:ring-2"
 );
 
 const primaryButtonClasses = clsx(
-  "bg-primary text-white hover:bg-primary-700 focus:ring-primary-400 active:bg-primary-800 active:ring-primary-900"
+  "bg-primary text-white hover:bg-primary-700 focus:ring-primary-400/75 active:bg-primary-800 active:ring-primary-900/75"
 );
 
 const linkButtonClasses = clsx(
@@ -70,5 +70,5 @@ const noneButtonClasses = clsx(
 );
 
 const secondaryButtonClasses = clsx(
-  "bg-gray-light text-white hover:bg-primary-700 focus:ring-primary-400 active:bg-primary-800 active:ring-primary-900"
+  "bg-gray-light text-white hover:bg-primary-700 focus:ring-primary-400/75 active:bg-primary-800 active:ring-primary-900/75"
 );
