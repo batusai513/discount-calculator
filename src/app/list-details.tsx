@@ -27,17 +27,18 @@ import {
   parseItemParamSchema,
   parseItemsSchema,
 } from "../modules/items/items";
-import { ItemsSchema } from "../modules/items/items.schema";
+import { ItemUnitSchema, ItemWeightSchema, ItemsSchema } from "../modules/items/items.schema";
 import { parseList } from "../modules/lists/lists";
 import { formatPrice } from "../utils/format";
 import { StoreCache } from "../utils/money-clip";
+import { ListDetailsLoader } from "../modules/items/items.types";
 
 export function ListDetails() {
-  const { id = "" } = useParams();
-  const { list, items } = useLoaderData() as Awaited<
-    ReturnType<ReturnType<typeof createListDetailLoader>>
-  >;
-
+  const { id = "", itemId } = useParams();
+  const { list, items, item } = useLoaderData() as ListDetailsLoader;
+  console.log("item.. ", item)
+  console.log("itemId.. ", itemId)
+  const seletedTab = item?.type ?? "unit";
   return (
     <>
       <Header>
@@ -69,7 +70,7 @@ export function ListDetails() {
             viewTransitionName: "discount-item-list-to-detail",
           }}
         >
-          <Tabs defaultValue="unit">
+          <Tabs defaultValue={seletedTab} key={itemId}>
             <TabsList>
               <TabsTrigger value="unit">
                 <Icon iconName="units" /> Unit
@@ -80,12 +81,12 @@ export function ListDetails() {
             </TabsList>
             <TabsContent value="unit">
               <CardBody className="pt-1 pb-5">
-                <UnitItemForm />
+                <UnitItemForm id={itemId} item={item as ItemUnitSchema} />
               </CardBody>
             </TabsContent>
             <TabsContent value="weight">
               <CardBody className="pt-1 pb-5">
-                <WeightItemForm />
+                <WeightItemForm id={itemId} item={item as ItemWeightSchema} />
               </CardBody>
             </TabsContent>
           </Tabs>
@@ -123,13 +124,12 @@ export function createListDetailLoader({
   listStore: StoreCache;
   itemsStore: StoreCache;
 }) {
-  return async function loader({ params }: LoaderFunctionArgs) {
+  return async function loader({ params }: LoaderFunctionArgs): Promise<ListDetailsLoader> {
     const list = await loadList(params.id, listStore);
     const items = await loadItems(params.id, itemsStore);
     return { list, items };
   };
 }
-
 export function createItemAction({
   itemsStore,
   listStore,
@@ -156,6 +156,46 @@ export function createItemAction({
   };
 }
 
+export function createEditItemLoader({
+  listStore,
+  itemsStore,
+}: {
+  listStore: StoreCache;
+  itemsStore: StoreCache;
+}) {
+  return async function loader(loadersArgs: LoaderFunctionArgs) {
+    const params = loadersArgs.params;
+    const { list, items } = await createListDetailLoader({ listStore, itemsStore })(loadersArgs);
+
+    const editItem = items.find((item) => item.id === params.itemId);
+    return { list, items, item: editItem };
+  };
+}
+
+export function createEditItemAction({
+  itemsStore,
+  listStore,
+}: {
+  itemsStore: StoreCache;
+  listStore: StoreCache;
+}) {
+  return async function action({ params, request }: LoaderFunctionArgs) {
+    const items = await loadItems(params.id, itemsStore);
+
+    const itemData = Object.fromEntries(await request.formData());
+    const itemParamSchema = parseItemParamSchema(itemData);
+    const newItem = itemFactory(itemParamSchema);
+
+    const newItems = items.filter((item) => item.id !== params.itemId);
+    newItems.unshift(newItem);
+
+    itemsStore.set(params.id ?? "", newItems);
+
+    updateListTotal(params.id, listStore, newItems);
+
+    return redirect(`/lists/${params.id}`, {});
+  };
+}
 export function createDeleteItemAction({
   itemsStore,
   listStore,

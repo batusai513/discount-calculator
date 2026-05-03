@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { Form } from "react-router-dom";
+import { Form, Link } from "react-router-dom";
 import { ItemSchema } from "../../modules/items/items.schema";
 import { formatPrice } from "../../utils/format";
 import { Button } from "../button/Button";
@@ -48,6 +48,16 @@ export function DiscountItem({
                 <Icon iconName="bin" />
               </Button>
             </Form>
+            <Button
+              variant="link"
+              className="text-third-400 flex-1"
+              value="edit"
+              shape="square"
+              asChild>
+              <Link to={`/lists/${id}/items/${discountItem.id}/edit`}>
+                <Icon iconName="edit" />
+              </Link>
+            </Button>
           </div>
         </header>
 

@@ -6,6 +6,8 @@ import {
 import {
   ListDetails,
   createDeleteItemAction,
+  createEditItemLoader,
+  createEditItemAction,
   createItemAction,
   createListDetailLoader,
 } from "./app/list-details";
@@ -60,6 +62,18 @@ export const router = createBrowserRouter([
           itemsStore: itemsStore,
         }),
         action: createItemAction({
+          itemsStore: itemsStore,
+          listStore: listsStore,
+        }),
+      },
+      {
+        path: "/lists/:id/items/:itemId/edit",
+        element: <ListDetails />,
+        loader: createEditItemLoader({
+          listStore: listsStore,
+          itemsStore: itemsStore,
+        }),
+        action: createEditItemAction({
           itemsStore: itemsStore,
           listStore: listsStore,
         }),

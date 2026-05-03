@@ -4,44 +4,61 @@ import { Button } from "../button/Button";
 import { Label, TextInput } from "../forms/Forms";
 import { useResetForm } from "../hooks/userResetForm";
 
-export function DiscountItemForm({
-  type,
-  quantityLabel,
-  quantityField,
-  quantityDeafultValue,
-  priceLabel,
-  priceField,
-}: {
+interface DiscountItemFromProps {
+  id?: string;
   type: string;
   quantityLabel: string;
   quantityField: string;
-  quantityDeafultValue: number | null;
+  quantityDefaultValue: number | null;
   priceLabel: string;
   priceField: string;
-}) {
+  priceDefaultValue?: number;
+  nameDefaultValue?: string;
+  discountDefaultValue?: number;
+}
+
+export function DiscountItemForm({
+  id,
+  type,
+  quantityLabel,
+  quantityField,
+  priceLabel,
+  priceField,
+  priceDefaultValue,
+  nameDefaultValue,
+  discountDefaultValue,
+  quantityDefaultValue,
+}: DiscountItemFromProps) {
   const form = useRef<HTMLFormElement>(null);
   useResetForm(form);
+  console.log(
+
+    priceDefaultValue,
+    nameDefaultValue,
+    discountDefaultValue,
+    quantityDefaultValue,
+  )
 
   const formName = `${type}ItemForm`;
 
   return (
-    <Form id={formName} method="post" ref={form}>
+    <Form key={id} id={formName} method="post" ref={form}>
       <input type="hidden" name="type" value={type} />
       <div className="grid grid-cols-4 gap-3 mb-2">
         <div className="col-span-3">
           <Label htmlFor="name">Name</Label>
-          <TextInput id="name" name="name" max="100" type="text" />
+          <TextInput key={id} defaultValue={nameDefaultValue} id="name" name="name" max="100" type="text" />
         </div>{" "}
         <div className="">
           <Label htmlFor="name">{quantityLabel}</Label>
           <TextInput
             id={quantityField}
             name={quantityField}
-            placeholder={quantityDeafultValue?.toString() || ""}
+            placeholder={quantityDefaultValue?.toString() || ""}
             type="number"
             min="0"
             max="10000"
-            defaultValue={quantityDeafultValue || ""}
+            defaultValue={quantityDefaultValue || ""}
             required
           />
         </div>
@@ -55,6 +72,7 @@ export function DiscountItemForm({
             name={priceField}
             max="1000000000000"
             step="0.001"
+            defaultValue={priceDefaultValue || ""}
             required
             placeholder="0.00"
           />
@@ -68,7 +86,7 @@ export function DiscountItemForm({
             name="discount"
             min="0"
             max="100"
-            defaultValue={0}
+            defaultValue={discountDefaultValue || 0}
             required
           />
         </div>
