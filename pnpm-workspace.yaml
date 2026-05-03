@@ -1,0 +1,10 @@
+registries:
+  default: https://registry.npmjs.org/
+
+allowBuilds:
+  "@biomejs/biome": false
+  esbuild: false
+
+dedupePeers: true
+lockfileIncludeTarballUrl: true
+saveExact: true
