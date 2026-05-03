@@ -8,3 +8,4 @@ allowBuilds:
 dedupePeers: true
 lockfileIncludeTarballUrl: true
 saveExact: true
+ignoreScripts: true
