@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 
 import { Button } from './button/Button';
 import { Card, CardBody } from './card/Card';
@@ -23,11 +23,7 @@ export function ListEmptyState() {
 
             <CardBody className="pt-0">
               <Button asChild block={true}>
-                <Link
-                  className="btn btn-primary"
-                  to="lists/new"
-                  unstable_viewTransition
-                >
+                <Link className="btn btn-primary" to="lists/new" viewTransition>
                   Create new list
                 </Link>
               </Button>

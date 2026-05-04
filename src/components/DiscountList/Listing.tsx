@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router';
 
 import { ListSchema } from '../../modules/lists/lists.schema';
 import { formatPrice } from '../../utils/format';
@@ -19,7 +19,7 @@ export function Listing({ data }: { data: Array<ListSchema> }) {
               <NavLink
                 to={`/lists/${list.id}`}
                 className="flex justify-between w-full py-1 pl-3 pr-3 gap-2 bg-white"
-                unstable_viewTransition
+                viewTransition
               >
                 {({ isTransitioning }) => {
                   return (

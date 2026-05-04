@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { Form, Link } from 'react-router-dom';
+import { Form, Link } from 'react-router';
 
 import { ItemSchema } from '../../modules/items/items.schema';
 import { formatPrice } from '../../utils/format';

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 
 import { Button } from '../components/button/Button';
 import { Card, CardBody } from '../components/card/Card';
@@ -36,11 +36,7 @@ export function StyleGuide() {
         <SeparatorRound />
         <CardBody className="pt-0">
           <Button asChild block={false}>
-            <Link
-              className="btn btn-primary"
-              to="lists/new"
-              unstable_viewTransition
-            >
+            <Link className="btn btn-primary" to="lists/new" viewTransition>
               Create new list
             </Link>
           </Button>

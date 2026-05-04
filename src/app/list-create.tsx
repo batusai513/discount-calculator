@@ -1,4 +1,4 @@
-import { ActionFunction, Link, redirect } from 'react-router-dom';
+import { ActionFunction, Link, redirect } from 'react-router';
 import { toast } from 'sonner';
 
 import { Button } from '../components/button/Button';

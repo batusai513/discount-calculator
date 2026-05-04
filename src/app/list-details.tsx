@@ -1,10 +1,10 @@
 import {
+  Link,
   LoaderFunctionArgs,
   redirect,
   useLoaderData,
   useParams,
 } from 'react-router';
-import { Link } from 'react-router-dom';
 
 import { Button } from '../components/button/Button';
 import { Card, CardBody } from '../components/card/Card';
@@ -61,7 +61,7 @@ export function ListDetails() {
         </HeaderItem>
         <HeaderItem position="end">
           <Button asChild variant="none">
-            <Link to={`/lists/${list.id}/edit`} unstable_viewTransition>
+            <Link to={`/lists/${list.id}/edit`} viewTransition>
               <Icon iconName="edit" />
             </Link>
           </Button>

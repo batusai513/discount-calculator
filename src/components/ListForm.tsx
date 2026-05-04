@@ -1,5 +1,5 @@
 import { ComponentPropsWithoutRef } from 'react';
-import { Form } from 'react-router-dom';
+import { Form } from 'react-router';
 
 import { ListSchema } from '../modules/lists/lists.schema';
 import { Button } from './button/Button';

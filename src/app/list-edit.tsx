@@ -4,7 +4,7 @@ import {
   Link,
   redirect,
   useLoaderData,
-} from 'react-router-dom';
+} from 'react-router';
 
 import { Button } from '../components/button/Button';
 import { Header, HeaderItem } from '../components/header/Header';
@@ -22,7 +22,7 @@ export function ListEdit() {
       <Header>
         <HeaderItem position="start">
           <Button variant="link" asChild>
-            <Link to="/" unstable_viewTransition>
+            <Link to="/" viewTransition>
               <Icon iconName="chevron-left" />
             </Link>
           </Button>

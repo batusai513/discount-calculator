@@ -1,4 +1,4 @@
-import { Link, LoaderFunctionArgs, useLoaderData } from 'react-router-dom';
+import { Link, LoaderFunctionArgs, useLoaderData } from 'react-router';
 
 import { Button } from '../components/button/Button';
 import { Listing } from '../components/DiscountList/Listing';
@@ -27,11 +27,7 @@ export function Lists() {
           <>
             <HeaderItem position="end">
               <Button asChild block={true} shape="brand">
-                <Link
-                  className="btn btn-primary"
-                  to="lists/new"
-                  unstable_viewTransition
-                >
+                <Link className="btn btn-primary" to="lists/new" viewTransition>
                   <Icon iconName="plus" />
                 </Link>
               </Button>
