@@ -1,14 +1,15 @@
-import { ComponentPropsWithoutRef } from "react";
-import { Button } from "./button/Button";
-import { Card, CardBody } from "./card/Card";
-import { Label, TextInput } from "./forms/Forms";
-import { Form } from "react-router-dom";
-import { ListSchema } from "../modules/lists/lists.schema";
+import { ComponentPropsWithoutRef } from 'react';
+import { Form } from 'react-router-dom';
+
+import { ListSchema } from '../modules/lists/lists.schema';
+import { Button } from './button/Button';
+import { Card, CardBody } from './card/Card';
+import { Label, TextInput } from './forms/Forms';
 
 export function ListForm({
   list,
   ...props
-}: { list?: ListSchema } & Omit<ComponentPropsWithoutRef<"form">, "encType">) {
+}: { list?: ListSchema } & Omit<ComponentPropsWithoutRef<'form'>, 'encType'>) {
   return (
     <>
       <Card shape="brand" className="max-w-3xl mx-auto w-full mb-8">
@@ -51,7 +52,7 @@ export function ListForm({
                 name="currency"
                 type="text"
                 placeholder=""
-                defaultValue={list?.currency || "EUR"}
+                defaultValue={list?.currency || 'EUR'}
               />
             </div>
           </CardBody>

@@ -1,9 +1,16 @@
-import { useRef } from "react";
-import { useResetForm } from "../hooks/userResetForm";
-import { DiscountItemForm } from "./DiscountItemForm";
-import { ItemWeightSchema } from "../../modules/items/items.schema";
+import { useRef } from 'react';
 
-export function WeightItemForm({ item, id }: { item?: ItemWeightSchema, id?: string }) {
+import { ItemWeightSchema } from '../../modules/items/items.schema';
+import { useResetForm } from '../hooks/userResetForm';
+import { DiscountItemForm } from './DiscountItemForm';
+
+export function WeightItemForm({
+  item,
+  id,
+}: {
+  item?: ItemWeightSchema;
+  id?: string;
+}) {
   const form = useRef<HTMLFormElement>(null);
   useResetForm(form);
   return (

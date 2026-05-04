@@ -9,9 +9,9 @@ import {
   number,
   fallback,
   coerce,
-} from "valibot";
+} from 'valibot';
 
-const currencies = union([literal("USD"), literal("EUR"), literal("GBP")]);
+const currencies = union([literal('USD'), literal('EUR'), literal('GBP')]);
 const stringToNumberSchema = coerce(number(), Number);
 
 export const listSchema = object({

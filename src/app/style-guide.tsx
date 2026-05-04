@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom";
-import { Button } from "../components/button/Button";
-import { Card, CardBody } from "../components/card/Card";
-import { Label, TextInput } from "../components/forms/Forms";
-import { Header, HeaderItem } from "../components/header/Header";
-import { Icon } from "../components/icon/Icon";
-import { SeparatorRound } from "../components/separator/Separator";
+import { Link } from 'react-router-dom';
+
+import { Button } from '../components/button/Button';
+import { Card, CardBody } from '../components/card/Card';
+import { Label, TextInput } from '../components/forms/Forms';
+import { Header, HeaderItem } from '../components/header/Header';
+import { Icon } from '../components/icon/Icon';
+import { SeparatorRound } from '../components/separator/Separator';
 
 export function StyleGuide() {
   return (

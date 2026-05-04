@@ -1,8 +1,9 @@
-import { clsx } from "clsx";
-import { ComponentPropsWithoutRef } from "react";
-import styles from "./header.module.css";
+import { clsx } from 'clsx';
+import { ComponentPropsWithoutRef } from 'react';
 
-export type HeaderProps = ComponentPropsWithoutRef<"header">;
+import styles from './header.module.css';
+
+export type HeaderProps = ComponentPropsWithoutRef<'header'>;
 
 export function Header({ children, className, ...props }: HeaderProps) {
   return (
@@ -12,11 +13,11 @@ export function Header({ children, className, ...props }: HeaderProps) {
   );
 }
 
-Header.displayName = "Header";
+Header.displayName = 'Header';
 
 export type HeaderItemProps = {
-  position: "start" | "center" | "end";
-} & ComponentPropsWithoutRef<"div">;
+  position: 'start' | 'center' | 'end';
+} & ComponentPropsWithoutRef<'div'>;
 
 export function HeaderItem({
   children,
@@ -27,9 +28,9 @@ export function HeaderItem({
   return (
     <div
       className={clsx(className, styles.item, {
-        "col-start-1 justify-start": position === "start",
-        "col-start-2 justify-center": position === "center",
-        "col-start-3 justify-end": position === "end",
+        'col-start-1 justify-start': position === 'start',
+        'col-start-2 justify-center': position === 'center',
+        'col-start-3 justify-end': position === 'end',
       })}
       {...props}
     >
@@ -38,4 +39,4 @@ export function HeaderItem({
   );
 }
 
-HeaderItem.displayName = "HeaderItem";
+HeaderItem.displayName = 'HeaderItem';

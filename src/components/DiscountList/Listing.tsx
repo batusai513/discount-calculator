@@ -1,12 +1,13 @@
-import { Fragment } from "react";
-import { NavLink } from "react-router-dom";
-import { Icon } from "../icon/Icon";
-import { ListSchema } from "../../modules/lists/lists.schema";
-import { formatPrice } from "../../utils/format";
-import { Card } from "../card/Card";
-import { Separator } from "../separator/Separator";
+import { Fragment } from 'react';
+import { NavLink } from 'react-router-dom';
 
-import "./list-details.css";
+import { ListSchema } from '../../modules/lists/lists.schema';
+import { formatPrice } from '../../utils/format';
+import { Card } from '../card/Card';
+import { Icon } from '../icon/Icon';
+import { Separator } from '../separator/Separator';
+
+import './list-details.css';
 
 export function Listing({ data }: { data: Array<ListSchema> }) {
   return (
@@ -29,7 +30,7 @@ export function Listing({ data }: { data: Array<ListSchema> }) {
                           isTransitioning
                             ? {
                                 viewTransitionName:
-                                  "discount-item-list-to-detail",
+                                  'discount-item-list-to-detail',
                               }
                             : undefined
                         }
@@ -43,7 +44,7 @@ export function Listing({ data }: { data: Array<ListSchema> }) {
                         <div className="flex justify-end items-center">
                           <span className="text-secondary-500 text-xs">
                             {new Date(list.createdAt).toLocaleDateString(
-                              "de-DE",
+                              'de-DE'
                             )}
                           </span>
                         </div>

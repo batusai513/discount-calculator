@@ -1,13 +1,14 @@
-import { Link, LoaderFunctionArgs, useLoaderData } from "react-router-dom";
-import { ListEmptyState } from "../components/ListEmptyState";
-import { Button } from "../components/button/Button";
-import { Header, HeaderItem } from "../components/header/Header";
-import { Icon } from "../components/icon/Icon";
-import { Wrapper } from "../components/wrapper/wrapper";
-import { parseListAll } from "../modules/lists/lists";
-import { StoreCache } from "../utils/money-clip";
-import { Listing } from "../components/DiscountList/Listing";
-import { ListSchema } from "../modules/lists/lists.schema";
+import { Link, LoaderFunctionArgs, useLoaderData } from 'react-router-dom';
+
+import { Button } from '../components/button/Button';
+import { Listing } from '../components/DiscountList/Listing';
+import { Header, HeaderItem } from '../components/header/Header';
+import { Icon } from '../components/icon/Icon';
+import { ListEmptyState } from '../components/ListEmptyState';
+import { Wrapper } from '../components/wrapper/wrapper';
+import { parseListAll } from '../modules/lists/lists';
+import { ListSchema } from '../modules/lists/lists.schema';
+import { StoreCache } from '../utils/money-clip';
 
 export function Lists() {
   const data = useLoaderData() as Awaited<
@@ -60,8 +61,8 @@ export function createLoader({ listStore }: { listStore: StoreCache }) {
       );
 
       return orderedLists;
-    } catch (error) {
-      throw new Error("Error loading lists");
+    } catch (_error) {
+      throw new Error('Error loading lists');
     }
   };
 }

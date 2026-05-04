@@ -1,11 +1,12 @@
-import { parse } from "valibot";
+import { parse } from 'valibot';
+
+import { getConfiguredCache } from '../../utils/money-clip';
 import {
   ListSchema,
   listSchema,
   listStoreSchema,
   listsSchema,
-} from "./lists.schema";
-import { getConfiguredCache } from "../../utils/money-clip";
+} from './lists.schema';
 
 export const parseList = (data: unknown): ListSchema => {
   return parse(listSchema, data);
@@ -22,6 +23,6 @@ export const parseListAll = (data: unknown): Array<ListSchema> => {
 export const listsStore = getConfiguredCache({
   version: 1,
   maxAge: Infinity,
-  dbName: "discount-calculator",
-  storeName: "lists",
+  dbName: 'discount-calculator',
+  storeName: 'lists',
 });

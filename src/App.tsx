@@ -1,8 +1,10 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter } from 'react-router-dom';
+
 import {
   ListCreate,
   createAction as createListAction,
-} from "./app/list-create";
+} from './app/list-create';
+import { createListDeleteAction } from './app/list-delete';
 import {
   ListDetails,
   createDeleteItemAction,
@@ -10,23 +12,22 @@ import {
   createEditItemAction,
   createItemAction,
   createListDetailLoader,
-} from "./app/list-details";
+} from './app/list-details';
 import {
   ListEdit,
   // createListDeletetAction,
   createListEditAction,
   createListEditLoader,
-} from "./app/list-edit";
-import { Lists, createLoader as createListsViewLoader } from "./app/lists";
-import { RootLayout } from "./app/root-layout";
-import { StyleGuide } from "./app/style-guide";
-import { itemsStore } from "./modules/items/items";
-import { listsStore } from "./modules/lists/lists";
-import { createListDeleteAction } from "./app/list-delete";
+} from './app/list-edit';
+import { Lists, createLoader as createListsViewLoader } from './app/lists';
+import { RootLayout } from './app/root-layout';
+import { StyleGuide } from './app/style-guide';
+import { itemsStore } from './modules/items/items';
+import { listsStore } from './modules/lists/lists';
 
 export const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <RootLayout />,
     children: [
       {
@@ -35,12 +36,12 @@ export const router = createBrowserRouter([
         loader: createListsViewLoader({ listStore: listsStore }),
       },
       {
-        path: "/lists/new",
+        path: '/lists/new',
         element: <ListCreate />,
         action: createListAction(listsStore),
       },
       {
-        path: "/lists/:id/delete",
+        path: '/lists/:id/delete',
         element: null,
         action: createListDeleteAction({
           listStore: listsStore,
@@ -48,14 +49,14 @@ export const router = createBrowserRouter([
         }),
       },
       {
-        path: "/lists/:id/edit",
+        path: '/lists/:id/edit',
         element: <ListEdit />,
         loader: createListEditLoader(listsStore),
         action: createListEditAction(listsStore),
       },
 
       {
-        path: "/lists/:id",
+        path: '/lists/:id',
         element: <ListDetails />,
         loader: createListDetailLoader({
           listStore: listsStore,
@@ -67,7 +68,7 @@ export const router = createBrowserRouter([
         }),
       },
       {
-        path: "/lists/:id/items/:itemId/edit",
+        path: '/lists/:id/items/:itemId/edit',
         element: <ListDetails />,
         loader: createEditItemLoader({
           listStore: listsStore,
@@ -79,7 +80,7 @@ export const router = createBrowserRouter([
         }),
       },
       {
-        path: "/lists/:id/items/:itemId",
+        path: '/lists/:id/items/:itemId',
         element: null,
         action: createDeleteItemAction({
           itemsStore: itemsStore,
@@ -87,7 +88,7 @@ export const router = createBrowserRouter([
         }),
       },
       {
-        path: "/style-guide",
+        path: '/style-guide',
         element: <StyleGuide />,
       },
     ],

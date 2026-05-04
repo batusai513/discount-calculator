@@ -1,12 +1,14 @@
-import { ReactNode } from "react";
-import { Form, Link } from "react-router-dom";
-import { ItemSchema } from "../../modules/items/items.schema";
-import { formatPrice } from "../../utils/format";
-import { Button } from "../button/Button";
-import { Card, CardBody } from "../card/Card";
-import { Icon } from "../icon/Icon";
-import { Separator } from "../separator/Separator";
-import styles from "./DiscountItem.module.css";
+import { ReactNode } from 'react';
+import { Form, Link } from 'react-router-dom';
+
+import { ItemSchema } from '../../modules/items/items.schema';
+import { formatPrice } from '../../utils/format';
+import { Button } from '../button/Button';
+import { Card, CardBody } from '../card/Card';
+import { Icon } from '../icon/Icon';
+import { Separator } from '../separator/Separator';
+
+import styles from './DiscountItem.module.css';
 
 export function DiscountItem({
   id,
@@ -18,7 +20,7 @@ export function DiscountItem({
   priceElement: ReactNode;
 }) {
   return (
-    <div className={styles["ticket-shadow"]}>
+    <div className={styles['ticket-shadow']}>
       <Card className={styles.ticket}>
         <header className="justify-space-between flex gap-2 px-4">
           <div className="text-primary bg-primary-200 flex h-12 w-14 shrink-0 items-center justify-center rounded-b-[15px] font-semibold">
@@ -53,7 +55,8 @@ export function DiscountItem({
               className="text-third-400 flex-1"
               value="edit"
               shape="square"
-              asChild>
+              asChild
+            >
               <Link to={`/lists/${id}/items/${discountItem.id}/edit`}>
                 <Icon iconName="edit" />
               </Link>

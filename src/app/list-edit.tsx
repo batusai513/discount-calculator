@@ -4,13 +4,14 @@ import {
   Link,
   redirect,
   useLoaderData,
-} from "react-router-dom";
-import { ListForm } from "../components/ListForm";
-import { Header, HeaderItem } from "../components/header/Header";
-import { Icon } from "../components/icon/Icon";
-import { parseList } from "../modules/lists/lists";
-import { StoreCache } from "../utils/money-clip";
-import { Button } from "../components/button/Button";
+} from 'react-router-dom';
+
+import { Button } from '../components/button/Button';
+import { Header, HeaderItem } from '../components/header/Header';
+import { Icon } from '../components/icon/Icon';
+import { ListForm } from '../components/ListForm';
+import { parseList } from '../modules/lists/lists';
+import { StoreCache } from '../utils/money-clip';
 
 export function ListEdit() {
   const { list } = useLoaderData() as Awaited<
@@ -71,9 +72,9 @@ export function createListEditLoader(listsStore: StoreCache) {
 
 async function loadList(listId: string | undefined, listStore: StoreCache) {
   try {
-    return parseList(await listStore.get(listId ?? ""));
-  } catch (error) {
-    throw new Error("Cannot get list");
+    return parseList(await listStore.get(listId ?? ''));
+  } catch (_error) {
+    throw new Error('Cannot get list');
   }
 }
 
@@ -86,10 +87,10 @@ export function createListEditAction(listsStore: StoreCache) {
 
       const editedList = parseList(fieldsValue);
 
-      listsStore.set(params.id ?? "", editedList);
+      listsStore.set(params.id ?? '', editedList);
       return redirect(`/lists/${params.id}`);
-    } catch (error) {
-      throw new Error("Cannot edit list");
+    } catch (_error) {
+      throw new Error('Cannot edit list');
     }
   };
 }

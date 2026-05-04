@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 @plugin "@tailwindcss/typography";
 @plugin "daisyui" {
   themes: false;
@@ -49,8 +49,8 @@
   --color-third-600: #7e83ae;
 
   --font-sans:
-    "Montserrat", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    'Montserrat', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   --shadow-custom: 5px 6px 22px 5px rgba(0, 0, 0, 0.12);
   --radius-brand: 1.25rem;
 }

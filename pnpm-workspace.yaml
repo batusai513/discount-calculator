@@ -2,7 +2,7 @@ registries:
   default: https://registry.npmjs.org/
 
 allowBuilds:
-  "@biomejs/biome": false
+  '@biomejs/biome': false
   esbuild: false
 
 dedupePeers: true

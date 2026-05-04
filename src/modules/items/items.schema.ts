@@ -10,7 +10,7 @@ import {
   literal,
   coerce,
   fallback,
-} from "valibot";
+} from 'valibot';
 
 const stringToNumberSchema = coerce(number(), Number);
 
@@ -23,7 +23,7 @@ const sharedItemSchema = object({
 export const itemUnitParamSchema = merge([
   sharedItemSchema,
   object({
-    type: literal("unit"),
+    type: literal('unit'),
     unitaryPrice: stringToNumberSchema,
   }),
 ]);
@@ -31,7 +31,7 @@ export const itemUnitParamSchema = merge([
 export const itemWeightParamSchema = merge([
   sharedItemSchema,
   object({
-    type: literal("weight"),
+    type: literal('weight'),
     basePrice: stringToNumberSchema,
   }),
 ]);

@@ -1,9 +1,16 @@
-import { useRef } from "react";
-import { ItemUnitSchema } from "../../modules/items/items.schema";
-import { useResetForm } from "../hooks/userResetForm";
-import { DiscountItemForm } from "./DiscountItemForm";
+import { useRef } from 'react';
 
-export function UnitItemForm({ item, id }: { item?: ItemUnitSchema, id?: string }) {
+import { ItemUnitSchema } from '../../modules/items/items.schema';
+import { useResetForm } from '../hooks/userResetForm';
+import { DiscountItemForm } from './DiscountItemForm';
+
+export function UnitItemForm({
+  item,
+  id,
+}: {
+  item?: ItemUnitSchema;
+  id?: string;
+}) {
   const form = useRef<HTMLFormElement>(null);
   useResetForm(form);
   return (

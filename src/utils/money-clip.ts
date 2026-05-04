@@ -1,4 +1,4 @@
-import * as idbKeyVal from "idb-keyval";
+import * as idbKeyVal from 'idb-keyval';
 
 type Options = {
   version: number;

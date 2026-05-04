@@ -1,5 +1,5 @@
-import { Outlet } from 'react-router-dom'
-import { Toaster } from 'sonner'
+import { Outlet } from 'react-router-dom';
+import { Toaster } from 'sonner';
 
 export function RootLayout() {
   return (
@@ -7,5 +7,5 @@ export function RootLayout() {
       <Outlet />
       <Toaster richColors />
     </div>
-  )
+  );
 }

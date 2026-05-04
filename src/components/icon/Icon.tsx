@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import { ComponentPropsWithoutRef, forwardRef } from 'react';
+
 import styles from './icon.module.css';
 
 export type IconNames =

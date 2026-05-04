@@ -1,14 +1,14 @@
-import { Slot } from "@radix-ui/react-slot";
-import { clsx } from "clsx";
-import { forwardRef, type ComponentPropsWithoutRef } from "react";
-import { twMerge } from "tailwind-merge";
+import { Slot } from '@radix-ui/react-slot';
+import { clsx } from 'clsx';
+import { forwardRef, type ComponentPropsWithoutRef } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 export type ButtonProps = {
   asChild?: boolean;
   block?: boolean;
-  variant?: "primary" | "secondary" | "link" | "none";
-  shape?: "rounded" | "rounded-sm" | "square" | "brand" | "none";
-} & ComponentPropsWithoutRef<"button">;
+  variant?: 'primary' | 'secondary' | 'link' | 'none';
+  shape?: 'rounded' | 'rounded-sm' | 'square' | 'brand' | 'none';
+} & ComponentPropsWithoutRef<'button'>;
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   function Button(
@@ -16,14 +16,14 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       children,
       className,
       block = true,
-      shape = "none",
-      variant = "primary",
+      shape = 'none',
+      variant = 'primary',
       asChild,
       ...props
     },
     ref
   ) {
-    const Comp = asChild ? Slot : "button";
+    const Comp = asChild ? Slot : 'button';
     return (
       <Comp
         ref={ref}
@@ -31,15 +31,15 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           clsx(
             buttonClasses,
             {
-              "w-full": block,
-              "aspect-square rounded-xl p-2 rounded-tr-none": shape === "brand",
-              "aspect-square rounded-lg p-2": shape === "square",
-              "rounded-full": shape === "rounded-sm" || shape === "rounded",
-              [primaryButtonClasses]: variant === "primary",
-              [secondaryButtonClasses]: variant === "secondary",
+              'w-full': block,
+              'aspect-square rounded-xl p-2 rounded-tr-none': shape === 'brand',
+              'aspect-square rounded-lg p-2': shape === 'square',
+              'rounded-full': shape === 'rounded-sm' || shape === 'rounded',
+              [primaryButtonClasses]: variant === 'primary',
+              [secondaryButtonClasses]: variant === 'secondary',
             },
-            variant === "none" ? noneButtonClasses : "",
-            variant === "link" ? linkButtonClasses : "",
+            variant === 'none' ? noneButtonClasses : '',
+            variant === 'link' ? linkButtonClasses : '',
             className
           )
         )}
@@ -51,24 +51,24 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   }
 );
 
-Button.displayName = "Button";
+Button.displayName = 'Button';
 
 const buttonClasses = clsx(
-  "justify-center align-middle py-1 px-3 font-bold shadow-md focus:outline-hidden focus:ring-3 inline-flex items-center active:ring-2"
+  'justify-center align-middle py-1 px-3 font-bold shadow-md focus:outline-hidden focus:ring-3 inline-flex items-center active:ring-2'
 );
 
 const primaryButtonClasses = clsx(
-  "bg-primary text-white hover:bg-primary-700 focus:ring-primary-400/75 active:bg-primary-800 active:ring-primary-900/75"
+  'bg-primary text-white hover:bg-primary-700 focus:ring-primary-400/75 active:bg-primary-800 active:ring-primary-900/75'
 );
 
 const linkButtonClasses = clsx(
-  "bg-none shadow-none hover:text-primary-700 focus:text-primary-400 active:text-primary-800"
+  'bg-none shadow-none hover:text-primary-700 focus:text-primary-400 active:text-primary-800'
 );
 
 const noneButtonClasses = clsx(
-  "bg-none shadow-none hover:text-primary-700 focus:text-primary-400 active:text-primary-800"
+  'bg-none shadow-none hover:text-primary-700 focus:text-primary-400 active:text-primary-800'
 );
 
 const secondaryButtonClasses = clsx(
-  "bg-gray-light text-white hover:bg-primary-700 focus:ring-primary-400/75 active:bg-primary-800 active:ring-primary-900/75"
+  'bg-gray-light text-white hover:bg-primary-700 focus:ring-primary-400/75 active:bg-primary-800 active:ring-primary-900/75'
 );

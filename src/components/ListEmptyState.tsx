@@ -1,7 +1,8 @@
-import { Link } from "react-router-dom";
-import { Button } from "./button/Button";
-import { Card, CardBody } from "./card/Card";
-import { Icon } from "./icon/Icon";
+import { Link } from 'react-router-dom';
+
+import { Button } from './button/Button';
+import { Card, CardBody } from './card/Card';
+import { Icon } from './icon/Icon';
 
 export function ListEmptyState() {
   return (

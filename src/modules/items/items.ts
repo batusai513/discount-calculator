@@ -1,7 +1,8 @@
-import { parse } from "valibot";
-import { getConfiguredCache } from "../../utils/money-clip";
-import { roundMoney } from "../../utils/number";
-import { uniqueId } from "../../utils/utils";
+import { parse } from 'valibot';
+
+import { getConfiguredCache } from '../../utils/money-clip';
+import { roundMoney } from '../../utils/number';
+import { uniqueId } from '../../utils/utils';
 import {
   ItemParamSchema,
   ItemSchema,
@@ -13,13 +14,13 @@ import {
   fallbackArrayItemsSchema,
   itemParamSchema,
   itemSchema,
-} from "./items.schema";
+} from './items.schema';
 
 export const itemsStore = getConfiguredCache({
   version: 1,
   maxAge: Infinity,
-  dbName: "discount-calculator-items",
-  storeName: "items",
+  dbName: 'discount-calculator-items',
+  storeName: 'items',
 });
 
 export function parseItemParamSchema(item: unknown): ItemParamSchema {
@@ -32,7 +33,7 @@ export function parseItemsSchema(item: unknown): ItemsSchema {
 
 export function itemFactory(param: ItemParamSchema): ItemSchema {
   const item =
-    param.type === "unit"
+    param.type === 'unit'
       ? createItemUnitSchema(param)
       : createWeightItemSchema(param);
   return parse(itemSchema, item);

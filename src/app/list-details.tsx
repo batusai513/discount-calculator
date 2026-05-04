@@ -3,42 +3,47 @@ import {
   redirect,
   useLoaderData,
   useParams,
-} from "react-router";
-import { Link } from "react-router-dom";
-import { DiscountUnitItem } from "../components/DiscountItems/UnitItem";
-import { UnitItemForm } from "../components/DiscountItems/UnitItemForm";
-import { DiscountWeightItem } from "../components/DiscountItems/WeightItem";
-import { WeightItemForm } from "../components/DiscountItems/WeightItemForm";
-import { Button } from "../components/button/Button";
-import { Card, CardBody } from "../components/card/Card";
-import { Header, HeaderItem } from "../components/header/Header";
-import { Icon } from "../components/icon/Icon";
+} from 'react-router';
+import { Link } from 'react-router-dom';
+
+import { Button } from '../components/button/Button';
+import { Card, CardBody } from '../components/card/Card';
+import { DiscountUnitItem } from '../components/DiscountItems/UnitItem';
+import { UnitItemForm } from '../components/DiscountItems/UnitItemForm';
+import { DiscountWeightItem } from '../components/DiscountItems/WeightItem';
+import { WeightItemForm } from '../components/DiscountItems/WeightItemForm';
+import { Header, HeaderItem } from '../components/header/Header';
+import { Icon } from '../components/icon/Icon';
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
-} from "../components/tabs/tabs";
-import { Wrapper } from "../components/wrapper/wrapper";
+} from '../components/tabs/tabs';
+import { Wrapper } from '../components/wrapper/wrapper';
 import {
   calculateSaved,
   calculateTotal,
   itemFactory,
   parseItemParamSchema,
   parseItemsSchema,
-} from "../modules/items/items";
-import { ItemUnitSchema, ItemWeightSchema, ItemsSchema } from "../modules/items/items.schema";
-import { parseList } from "../modules/lists/lists";
-import { formatPrice } from "../utils/format";
-import { StoreCache } from "../utils/money-clip";
-import { ListDetailsLoader } from "../modules/items/items.types";
+} from '../modules/items/items';
+import {
+  ItemUnitSchema,
+  ItemWeightSchema,
+  ItemsSchema,
+} from '../modules/items/items.schema';
+import { ListDetailsLoader } from '../modules/items/items.types';
+import { parseList } from '../modules/lists/lists';
+import { formatPrice } from '../utils/format';
+import { StoreCache } from '../utils/money-clip';
 
 export function ListDetails() {
-  const { id = "", itemId } = useParams();
+  const { id = '', itemId } = useParams();
   const { list, items, item } = useLoaderData() as ListDetailsLoader;
-  console.log("item.. ", item)
-  console.log("itemId.. ", itemId)
-  const seletedTab = item?.type ?? "unit";
+  console.log('item.. ', item);
+  console.log('itemId.. ', itemId);
+  const seletedTab = item?.type ?? 'unit';
   return (
     <>
       <Header>
@@ -67,7 +72,7 @@ export function ListDetails() {
         <Card
           className="max-w-3xl mx-auto w-full mb-8"
           style={{
-            viewTransitionName: "discount-item-list-to-detail",
+            viewTransitionName: 'discount-item-list-to-detail',
           }}
         >
           <Tabs defaultValue={seletedTab} key={itemId}>
@@ -93,7 +98,7 @@ export function ListDetails() {
         </Card>
         <div className="flex flex-col gap-4">
           {items.map((item) => {
-            return item.type === "unit" ? (
+            return item.type === 'unit' ? (
               <DiscountUnitItem key={item.id} discountItem={item} id={id} />
             ) : (
               <DiscountWeightItem key={item.id} discountItem={item} id={id} />
@@ -124,7 +129,9 @@ export function createListDetailLoader({
   listStore: StoreCache;
   itemsStore: StoreCache;
 }) {
-  return async function loader({ params }: LoaderFunctionArgs): Promise<ListDetailsLoader> {
+  return async function loader({
+    params,
+  }: LoaderFunctionArgs): Promise<ListDetailsLoader> {
     const list = await loadList(params.id, listStore);
     const items = await loadItems(params.id, itemsStore);
     return { list, items };
@@ -146,11 +153,11 @@ export function createItemAction({
       const items = await loadItems(params.id, itemsStore);
       items.unshift(item);
 
-      await itemsStore.set(params.id ?? "", items);
+      await itemsStore.set(params.id ?? '', items);
 
       updateListTotal(params.id, listStore, items);
       return { ok: true };
-    } catch (error) {
+    } catch (_error) {
       return {};
     }
   };
@@ -165,7 +172,10 @@ export function createEditItemLoader({
 }) {
   return async function loader(loadersArgs: LoaderFunctionArgs) {
     const params = loadersArgs.params;
-    const { list, items } = await createListDetailLoader({ listStore, itemsStore })(loadersArgs);
+    const { list, items } = await createListDetailLoader({
+      listStore,
+      itemsStore,
+    })(loadersArgs);
 
     const editItem = items.find((item) => item.id === params.itemId);
     return { list, items, item: editItem };
@@ -189,7 +199,7 @@ export function createEditItemAction({
     const newItems = items.filter((item) => item.id !== params.itemId);
     newItems.unshift(newItem);
 
-    itemsStore.set(params.id ?? "", newItems);
+    itemsStore.set(params.id ?? '', newItems);
 
     updateListTotal(params.id, listStore, newItems);
 
@@ -207,7 +217,7 @@ export function createDeleteItemAction({
     const items = await loadItems(params.id, itemsStore);
     const newItems = items.filter((item) => item.id !== params.itemId);
 
-    itemsStore.set(params.id ?? "", newItems);
+    itemsStore.set(params.id ?? '', newItems);
 
     updateListTotal(params.id, listStore, newItems);
 
@@ -217,9 +227,9 @@ export function createDeleteItemAction({
 
 async function loadList(listId: string | undefined, listStore: StoreCache) {
   try {
-    return parseList(await listStore.get(listId ?? ""));
-  } catch (error) {
-    throw new Error("Cannot get list");
+    return parseList(await listStore.get(listId ?? ''));
+  } catch (_error) {
+    throw new Error('Cannot get list');
   }
 }
 
@@ -227,7 +237,7 @@ async function loadItems(
   listId: string | undefined,
   itemsStore: StoreCache
 ): Promise<ItemsSchema> {
-  return parseItemsSchema(await itemsStore.get(listId ?? ""));
+  return parseItemsSchema(await itemsStore.get(listId ?? ''));
 }
 
 async function updateListTotal(
@@ -239,9 +249,9 @@ async function updateListTotal(
     const list = await loadList(listId, listStore);
     list.total = calculateTotal(items);
 
-    await listStore.set(listId ?? "", list);
+    await listStore.set(listId ?? '', list);
     return { ok: true };
-  } catch (error) {
-    throw new Error("Cannot update the list total");
+  } catch (_error) {
+    throw new Error('Cannot update the list total');
   }
 }

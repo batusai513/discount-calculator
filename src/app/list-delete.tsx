@@ -1,5 +1,6 @@
-import { LoaderFunctionArgs, redirect } from "react-router";
-import { StoreCache } from "../utils/money-clip";
+import { LoaderFunctionArgs, redirect } from 'react-router';
+
+import { StoreCache } from '../utils/money-clip';
 
 export function createListDeleteAction({
   itemsStore,
@@ -9,17 +10,17 @@ export function createListDeleteAction({
   listStore: StoreCache;
 }) {
   return async function action({ params }: LoaderFunctionArgs) {
-    console.log("delete... ", params);
+    console.log('delete... ', params);
 
     try {
       await Promise.all([
-        itemsStore.del(params.id ?? ""),
-        listStore.del(params.id ?? ""),
+        itemsStore.del(params.id ?? ''),
+        listStore.del(params.id ?? ''),
       ]);
 
-      return redirect("/");
-    } catch (error) {
-      throw new Error("Cannot delete list");
+      return redirect('/');
+    } catch (_error) {
+      throw new Error('Cannot delete list');
     }
   };
 }

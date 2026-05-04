@@ -1,6 +1,6 @@
-import { ItemWeightSchema } from "../../modules/items/items.schema";
-import { formatPrice } from "../../utils/format";
-import { DiscountItem } from "./DiscountItem";
+import { ItemWeightSchema } from '../../modules/items/items.schema';
+import { formatPrice } from '../../utils/format';
+import { DiscountItem } from './DiscountItem';
 
 function BasePrice({ discountItem }: { discountItem: ItemWeightSchema }) {
   return (
@@ -13,7 +13,10 @@ function BasePrice({ discountItem }: { discountItem: ItemWeightSchema }) {
 export function DiscountWeightItem({
   discountItem,
   id,
-}: { discountItem: ItemWeightSchema; id: string }) {
+}: {
+  discountItem: ItemWeightSchema;
+  id: string;
+}) {
   return (
     <DiscountItem
       id={id}

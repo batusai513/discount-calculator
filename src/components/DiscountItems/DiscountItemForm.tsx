@@ -1,8 +1,9 @@
-import { useRef } from "react";
-import { Form } from "react-router-dom";
-import { Button } from "../button/Button";
-import { Label, TextInput } from "../forms/Forms";
-import { useResetForm } from "../hooks/userResetForm";
+import { useRef } from 'react';
+import { Form } from 'react-router-dom';
+
+import { Button } from '../button/Button';
+import { Label, TextInput } from '../forms/Forms';
+import { useResetForm } from '../hooks/userResetForm';
 
 interface DiscountItemFromProps {
   id?: string;
@@ -32,12 +33,11 @@ export function DiscountItemForm({
   const form = useRef<HTMLFormElement>(null);
   useResetForm(form);
   console.log(
-
     priceDefaultValue,
     nameDefaultValue,
     discountDefaultValue,
-    quantityDefaultValue,
-  )
+    quantityDefaultValue
+  );
 
   const formName = `${type}ItemForm`;
 
@@ -47,22 +47,29 @@ export function DiscountItemForm({
       <div className="grid grid-cols-4 gap-3 mb-2">
         <div className="col-span-3">
           <Label htmlFor="name">Name</Label>
-          <TextInput key={id} defaultValue={nameDefaultValue} id="name" name="name" max="100" type="text" />
-        </div>{" "}
+          <TextInput
+            key={id}
+            defaultValue={nameDefaultValue}
+            id="name"
+            name="name"
+            max="100"
+            type="text"
+          />
+        </div>{' '}
         <div className="">
           <Label htmlFor="name">{quantityLabel}</Label>
           <TextInput
             id={quantityField}
             name={quantityField}
-            placeholder={quantityDefaultValue?.toString() || ""}
+            placeholder={quantityDefaultValue?.toString() || ''}
             type="number"
             min="0"
             max="10000"
-            defaultValue={quantityDefaultValue || ""}
+            defaultValue={quantityDefaultValue || ''}
             required
           />
         </div>
-      </div>{" "}
+      </div>{' '}
       <div className="grid grid-cols-5 gap-3 col-span-4">
         <div className="col-span-3">
           <Label htmlFor="unitaryPrice">{priceLabel}</Label>
@@ -72,7 +79,7 @@ export function DiscountItemForm({
             name={priceField}
             max="1000000000000"
             step="0.001"
-            defaultValue={priceDefaultValue || ""}
+            defaultValue={priceDefaultValue || ''}
             required
             placeholder="0.00"
           />

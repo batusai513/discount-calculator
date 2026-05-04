@@ -1,5 +1,5 @@
-import { RefObject, useEffect } from "react";
-import { useActionData, useNavigation } from "react-router";
+import { RefObject, useEffect } from 'react';
+import { useActionData, useNavigation } from 'react-router';
 
 export function useResetForm($form: RefObject<HTMLFormElement>) {
   const navigation = useNavigation();
@@ -8,7 +8,7 @@ export function useResetForm($form: RefObject<HTMLFormElement>) {
   useEffect(
     function resetFormOnSuccess() {
       //@ts-expect-error
-      if (navigation.state === "idle" && actionData?.ok) {
+      if (navigation.state === 'idle' && actionData?.ok) {
         $form.current?.reset();
       }
     },

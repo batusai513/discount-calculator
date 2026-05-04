@@ -1,7 +1,8 @@
-import * as TabsPrimitive from "@radix-ui/react-tabs";
-import { clsx } from "clsx";
-import * as React from "react";
-import styles from "./tabs.module.css";
+import * as TabsPrimitive from '@radix-ui/react-tabs';
+import { clsx } from 'clsx';
+import * as React from 'react';
+
+import styles from './tabs.module.css';
 
 const Tabs = TabsPrimitive.Root;
 
@@ -13,7 +14,7 @@ const TabsList = React.forwardRef<
     <TabsPrimitive.List
       ref={ref}
       className={clsx(
-        "grid items-stretch min-h-9 auto-cols-fr grid-flow-col justify-center rounded-lg bg-muted text-muted-foreground",
+        'grid items-stretch min-h-9 auto-cols-fr grid-flow-col justify-center rounded-lg bg-muted text-muted-foreground',
         className
       )}
       {...props}
@@ -31,7 +32,7 @@ const TabsTrigger = React.forwardRef<
     <TabsPrimitive.Trigger
       ref={ref}
       className={clsx(
-        styles["tab-trigger"],
+        styles['tab-trigger'],
         `inline-flex
           items-center
           justify-center
@@ -67,7 +68,7 @@ const TabsContent = React.forwardRef<
     <TabsPrimitive.Content
       ref={ref}
       className={clsx(
-        "mt-2 ring-offset-background focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+        'mt-2 ring-offset-background focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
         className
       )}
       {...props}

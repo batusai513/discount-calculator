@@ -1,5 +1,6 @@
 import { clsx } from 'clsx';
 import { ComponentPropsWithoutRef } from 'react';
+
 import styles from './separator.module.css';
 
 export type SeparatorProps = ComponentPropsWithoutRef<'hr'>;
