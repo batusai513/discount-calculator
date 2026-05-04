@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef } from 'react';
+import { type ComponentPropsWithoutRef } from 'react';
 import { Form } from 'react-router';
 
 import { ListSchema } from '../modules/lists/lists.schema';
@@ -9,7 +9,7 @@ import { Label, TextInput } from './forms/Forms';
 export function ListForm({
   list,
   ...props
-}: { list?: ListSchema } & Omit<ComponentPropsWithoutRef<'form'>, 'encType'>) {
+}: { list?: ListSchema } & Omit<ComponentPropsWithoutRef<typeof Form>, 'encType'>) {
   return (
     <>
       <Card shape="brand" className="max-w-3xl mx-auto w-full mb-8">

@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { ComponentPropsWithoutRef, forwardRef } from 'react';
+import { type ComponentPropsWithoutRef, type Ref } from 'react';
 
 import styles from './icon.module.css';
 
@@ -16,18 +16,13 @@ export type IconNames =
 
 export type IconProps = ComponentPropsWithoutRef<'svg'> & {
   iconName: IconNames;
+  ref?: Ref<SVGSVGElement>;
 };
 
-export const Icon = forwardRef<SVGSVGElement, IconProps>(function Icon(
-  { iconName, className, ...props }: IconProps,
-  ref
-) {
+export function Icon({ iconName, className, ref, ...props }: IconProps) {
   return (
-    // biome-ignore lint/a11y/noSvgWithoutTitle: <explanation>
     <svg ref={ref} className={clsx(styles.icon, className)} {...props}>
       <use href={`/sprite.svg#icon-${iconName}`} />
     </svg>
   );
-});
-
-Icon.displayName = 'Icon';
+}

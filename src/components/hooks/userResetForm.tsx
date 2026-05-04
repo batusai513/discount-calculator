@@ -1,7 +1,7 @@
-import { RefObject, useEffect } from 'react';
+import { type RefObject, useEffect } from 'react';
 import { useActionData, useNavigation } from 'react-router';
 
-export function useResetForm($form: RefObject<HTMLFormElement>) {
+export function useResetForm($form: RefObject<HTMLFormElement | null>) {
   const navigation = useNavigation();
   const actionData = useActionData();
 

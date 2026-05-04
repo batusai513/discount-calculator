@@ -1,6 +1,6 @@
 import { Slot } from '@radix-ui/react-slot';
 import { clsx } from 'clsx';
-import { forwardRef, type ComponentPropsWithoutRef } from 'react';
+import { type ComponentPropsWithoutRef, type Ref } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 export type ButtonProps = {
@@ -8,50 +8,45 @@ export type ButtonProps = {
   block?: boolean;
   variant?: 'primary' | 'secondary' | 'link' | 'none';
   shape?: 'rounded' | 'rounded-sm' | 'square' | 'brand' | 'none';
+  ref?: Ref<HTMLButtonElement>;
 } & ComponentPropsWithoutRef<'button'>;
 
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  function Button(
-    {
-      children,
-      className,
-      block = true,
-      shape = 'none',
-      variant = 'primary',
-      asChild,
-      ...props
-    },
-    ref
-  ) {
-    const Comp = asChild ? Slot : 'button';
-    return (
-      <Comp
-        ref={ref}
-        className={twMerge(
-          clsx(
-            buttonClasses,
-            {
-              'w-full': block,
-              'aspect-square rounded-xl p-2 rounded-tr-none': shape === 'brand',
-              'aspect-square rounded-lg p-2': shape === 'square',
-              'rounded-full': shape === 'rounded-sm' || shape === 'rounded',
-              [primaryButtonClasses]: variant === 'primary',
-              [secondaryButtonClasses]: variant === 'secondary',
-            },
-            variant === 'none' ? noneButtonClasses : '',
-            variant === 'link' ? linkButtonClasses : '',
-            className
-          )
-        )}
-        {...props}
-      >
-        {children}
-      </Comp>
-    );
-  }
-);
-
-Button.displayName = 'Button';
+export function Button({
+  children,
+  className,
+  block = true,
+  shape = 'none',
+  variant = 'primary',
+  asChild,
+  ref,
+  ...props
+}: ButtonProps) {
+  const Comp = asChild ? Slot : 'button';
+  return (
+    <Comp
+      ref={ref}
+      className={twMerge(
+        clsx(
+          buttonClasses,
+          {
+            'w-full': block,
+            'aspect-square rounded-xl p-2 rounded-tr-none': shape === 'brand',
+            'aspect-square rounded-lg p-2': shape === 'square',
+            'rounded-full': shape === 'rounded-sm' || shape === 'rounded',
+            [primaryButtonClasses]: variant === 'primary',
+            [secondaryButtonClasses]: variant === 'secondary',
+          },
+          variant === 'none' ? noneButtonClasses : '',
+          variant === 'link' ? linkButtonClasses : '',
+          className
+        )
+      )}
+      {...props}
+    >
+      {children}
+    </Comp>
+  );
+}
 
 const buttonClasses = clsx(
   'justify-center align-middle py-1 px-3 font-bold shadow-md focus:outline-hidden focus:ring-3 inline-flex items-center active:ring-2'
