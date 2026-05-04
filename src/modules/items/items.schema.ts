@@ -3,16 +3,17 @@ import {
   object,
   string,
   optional,
-  merge,
-  Output,
+  InferOutput,
   array,
   union,
   literal,
-  coerce,
   fallback,
+  pipe,
+  unknown,
+  transform,
 } from 'valibot';
 
-const stringToNumberSchema = coerce(number(), Number);
+const stringToNumberSchema = pipe(unknown(), transform(Number));
 
 const sharedItemSchema = object({
   name: optional(string()),
@@ -20,21 +21,17 @@ const sharedItemSchema = object({
   quantity: fallback(stringToNumberSchema, 1),
 });
 
-export const itemUnitParamSchema = merge([
-  sharedItemSchema,
-  object({
-    type: literal('unit'),
-    unitaryPrice: stringToNumberSchema,
-  }),
-]);
+export const itemUnitParamSchema = object({
+  ...sharedItemSchema.entries,
+  type: literal('unit'),
+  unitaryPrice: stringToNumberSchema,
+});
 
-export const itemWeightParamSchema = merge([
-  sharedItemSchema,
-  object({
-    type: literal('weight'),
-    basePrice: stringToNumberSchema,
-  }),
-]);
+export const itemWeightParamSchema = object({
+  ...sharedItemSchema.entries,
+  type: literal('weight'),
+  basePrice: stringToNumberSchema,
+});
 
 export const itemParamSchema = union([
   itemUnitParamSchema,
@@ -48,25 +45,25 @@ const sharedCalculatedItemSchema = object({
   saving: number(),
 });
 
-export const itemUnitSchema = merge([
-  itemUnitParamSchema,
-  sharedCalculatedItemSchema,
-]);
+export const itemUnitSchema = object({
+  ...itemUnitParamSchema.entries,
+  ...sharedCalculatedItemSchema.entries,
+});
 
-export const itemWeightSchema = merge([
-  itemWeightParamSchema,
-  sharedCalculatedItemSchema,
-]);
+export const itemWeightSchema = object({
+  ...itemWeightParamSchema.entries,
+  ...sharedCalculatedItemSchema.entries,
+});
 
 export const itemSchema = union([itemUnitSchema, itemWeightSchema]);
 export const itemsSchema = array(itemSchema);
 
 export const fallbackArrayItemsSchema = fallback(itemsSchema, []);
 
-export type ItemUnitParamSchema = Output<typeof itemUnitParamSchema>;
-export type ItemWeightParamSchema = Output<typeof itemWeightParamSchema>;
-export type ItemParamSchema = Output<typeof itemParamSchema>;
-export type ItemUnitSchema = Output<typeof itemUnitSchema>;
-export type ItemWeightSchema = Output<typeof itemWeightSchema>;
-export type ItemSchema = Output<typeof itemSchema>;
-export type ItemsSchema = Output<typeof itemsSchema>;
+export type ItemUnitParamSchema = InferOutput<typeof itemUnitParamSchema>;
+export type ItemWeightParamSchema = InferOutput<typeof itemWeightParamSchema>;
+export type ItemParamSchema = InferOutput<typeof itemParamSchema>;
+export type ItemUnitSchema = InferOutput<typeof itemUnitSchema>;
+export type ItemWeightSchema = InferOutput<typeof itemWeightSchema>;
+export type ItemSchema = InferOutput<typeof itemSchema>;
+export type ItemsSchema = InferOutput<typeof itemsSchema>;

@@ -1,18 +1,19 @@
 import {
-  object,
-  string,
-  union,
-  literal,
-  Output,
+  InferOutput,
   array,
-  record,
-  number,
   fallback,
-  coerce,
+  literal,
+  object,
+  pipe,
+  record,
+  string,
+  transform,
+  union,
+  unknown,
 } from 'valibot';
 
 const currencies = union([literal('USD'), literal('EUR'), literal('GBP')]);
-const stringToNumberSchema = coerce(number(), Number);
+const stringToNumberSchema = pipe(unknown(), transform(Number));
 
 export const listSchema = object({
   id: string(),
@@ -22,7 +23,7 @@ export const listSchema = object({
   createdAt: string(),
   total: fallback(stringToNumberSchema, 0),
 });
-export const listStoreSchema = record(listSchema);
+export const listStoreSchema = record(string(), listSchema);
 export const listsSchema = array(listSchema);
 
-export type ListSchema = Output<typeof listSchema>;
+export type ListSchema = InferOutput<typeof listSchema>;
