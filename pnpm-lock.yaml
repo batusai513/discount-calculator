@@ -40,8 +40,8 @@ importers:
         specifier: 1.4.3
         version: 1.4.3(react-dom@18.2.0)(react@18.2.0)
       tailwind-merge:
-        specifier: 2.2.1
-        version: 2.2.1
+        specifier: 3.5.0
+        version: 3.5.0
       valibot:
         specifier: 0.30.0
         version: 0.30.0
@@ -2449,8 +2449,8 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==, tarball: https://registry.npmjs.org/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz}
     engines: {node: '>= 0.4'}
 
-  tailwind-merge@2.2.1:
-    resolution: {integrity: sha512-o+2GTLkthfa5YUt4JxPfzMIpQzZ3adD1vLVkvKE1Twl9UAhGsEbIZhHHZVRttyW177S8PDJI3bTQNaebyofK3Q==, tarball: https://registry.npmjs.org/tailwind-merge/-/tailwind-merge-2.2.1.tgz}
+  tailwind-merge@3.5.0:
+    resolution: {integrity: sha512-I8K9wewnVDkL1NTGoqWmVEIlUcB9gFriAEkXkfCjX5ib8ezGxtR3xD7iZIxrfArjEsH7F1CHD4RFUtxefdqV/A==, tarball: https://registry.npmjs.org/tailwind-merge/-/tailwind-merge-3.5.0.tgz}
 
   tailwindcss@4.2.2:
     resolution: {integrity: sha512-KWBIxs1Xb6NoLdMVqhbhgwZf2PGBpPEiwOqgI4pFIYbNTfBXiKYyWoTsXgBQ9WFg/OlhnvHaY+AEpW7wSmFo2Q==, tarball: https://registry.npmjs.org/tailwindcss/-/tailwindcss-4.2.2.tgz}
@@ -5250,9 +5250,7 @@ snapshots:
 
   supports-preserve-symlinks-flag@1.0.0: {}
 
-  tailwind-merge@2.2.1:
-    dependencies:
-      '@babel/runtime': 7.29.2
+  tailwind-merge@3.5.0: {}
 
   tailwindcss@4.2.2: {}
 
